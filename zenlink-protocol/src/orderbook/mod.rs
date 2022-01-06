@@ -21,6 +21,8 @@ use sp_runtime::{
 	AnySignature,
 };
 
+use sp_std;
+
 /// Limit order
 #[derive(Encode, Decode, Default, Clone, RuntimeDebug, PartialEq, Eq, TypeInfo)]
 pub struct LimitOrder<BlockNumber, AccountId> {
@@ -56,6 +58,8 @@ where
 		data.append(&mut Vec::from(account_to_bytes(&self.recipient)?));
 		data.append(&mut self.deadline.encode());
 
+		sp_std::if_std! {println!{"order data {:#?}", data}}
+		sp_std::if_std! {println!{"to_asset_id data {:#?}", self.to_asset_id.encode()}}
 		Ok(Keccak256::hash(&data))
 	}
 
@@ -95,6 +99,8 @@ impl<T: Config> Pallet<T> {
 		name.append(&mut chain_id);
 		name.append(&mut account.encode());
 
+		sp_std::if_std! {println!{"domain_separator data {:#?}", name}}
+		sp_std::if_std! {println!{"domain_separator data {:#?}", account}}
 		Keccak256::hash(&name)
 	}
 
@@ -108,6 +114,11 @@ impl<T: Config> Pallet<T> {
 		msg.append(&mut Vec::<u8>::from(order_hash.as_bytes()));
 
 		let digest = Keccak256::hash(&msg);
+
+		sp_std::if_std! {println!{"account_id {:#?}", order.maker}}
+		sp_std::if_std! {println!{"order_hash {:#?}", order_hash}}
+		sp_std::if_std! {println!{"separator hash {:#?}", separator}}
+		sp_std::if_std! {println!{"digest {:#?}", digest}}
 
 		Self::verify_signature(&order.maker, digest.as_bytes(), &order.signature)?;
 		ensure!(
