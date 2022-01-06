@@ -86,9 +86,9 @@ where
 impl<T: Config> Pallet<T> {
 	// DomainSeparator = keccak256({name, version, chainId, pallet_account})
 	fn domain_separator() -> H256 {
-		let mut name = Vec::from("OrderBook");
-		let mut chain_id = Vec::from(T::SelfParaId::get().to_be_bytes());
-		let mut version = Vec::from(1u32.to_be_bytes());
+		let mut name = "OrderBook".encode();
+		let mut chain_id = Vec::from(2001u32.encode());
+		let mut version = Vec::from(1u32.encode());
 		let account: T::AccountId = T::PalletId::get().into_account();
 
 		name.append(&mut version);
