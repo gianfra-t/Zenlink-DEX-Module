@@ -27,8 +27,8 @@ zenlink-swap-router = {path = "../../zenlink-swap-router", default-features = fa
 zenlink-vault = {path = "../../zenlink-vault", default-features = false }
 
 # ORML
-orml-tokens = { git = "https://github.com/open-web3-stack/open-runtime-module-library", rev = "4ae0372e2c624e6acc98305564b9d395f70814c0", default-features = false }
-orml-traits = { git = "https://github.com/open-web3-stack/open-runtime-module-library", rev = "4ae0372e2c624e6acc98305564b9d395f70814c0", default-features = false }
+orml-tokens = { git = "https://github.com/bifrost-finance/open-runtime-module-library", rev = "4ae0372e2c624e6acc98305564b9d395f70814c0", default-features = false }
+orml-traits = { git = "https://github.com/bifrost-finance/open-runtime-module-library", rev = "4ae0372e2c624e6acc98305564b9d395f70814c0", default-features = false }
 
 # Substrate
 frame-benchmarking = { git = "https://github.com/paritytech/substrate", default-features = false, optional = true, branch = "polkadot-v0.9.42" }
