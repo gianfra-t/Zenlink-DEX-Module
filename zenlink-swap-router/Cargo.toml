@@ -22,8 +22,8 @@ frame-support = { workspace = true  }
 frame-system = { workspace = true  }
 frame-benchmarking = { workspace = true, optional = true }
 
-zenlink-protocol = { workspace = true  }
-zenlink-stable-amm = { workspace = true  }
+zenlink-protocol = {package = "zenlink-protocol", path = "../zenlink-protocol", version = "0.4.4", default-features = false}
+zenlink-stable-amm = {package = "zenlink-stable-amm", path = "../zenlink-stable-amm",version = "0.1.0", default-features = false}
 orml-traits = { workspace = true }
 
 [dev-dependencies]

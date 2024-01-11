@@ -11,7 +11,7 @@ codec = { workspace = true }
 sp-api = { workspace = true }
 sp-std = { workspace = true }
 
-zenlink-protocol = { workspace = true }
+zenlink-protocol = { path = '../..', default-features = false }
 
 [dev-dependencies]
 serde_json = { workspace = true }

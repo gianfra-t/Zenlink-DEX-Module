@@ -20,5 +20,5 @@ sp-rpc = { workspace = true }
 sp-runtime = { workspace = true }
 
 # Local packages
-zenlink-protocol = { workspace = true }
-zenlink-protocol-runtime-api = { workspace = true }
+zenlink-protocol = { path = "..", version = "0.4.0"}
+zenlink-protocol-runtime-api = { path = "./runtime-api", version = "0.4.0"}
