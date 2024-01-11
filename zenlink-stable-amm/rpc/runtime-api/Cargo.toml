@@ -8,7 +8,7 @@ codec = { workspace = true }
 sp-api = { workspace = true }
 sp-std = { workspace = true }
 
-zenlink-stable-amm = { workspace = true }
+zenlink-stable-amm = { path = '../..', default-features = false }
 
 [features]
 default = ["std"]

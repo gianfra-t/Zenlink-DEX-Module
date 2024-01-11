@@ -15,4 +15,4 @@ sp-api = { workspace = true }
 sp-rpc = { workspace = true }
 sp-runtime = { workspace = true }
 
-zenlink-stable-amm-runtime-api = { workspace = true }
+zenlink-stable-amm-runtime-api = { path = "./runtime-api", version = "0.1.0"}

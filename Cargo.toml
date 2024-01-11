@@ -16,10 +16,6 @@ members = [
 resolver = "2"
 
 [workspace.dependencies]
-zenlink-protocol               = { path = "zenlink-protocol", default-features = false }
-zenlink-protocol-runtime-api   = { path = "zenlink-protocol/rpc/runtime-api", default-features = false}
-zenlink-stable-amm             = { path = "zenlink-stable-amm", default-features = false }
-zenlink-stable-amm-runtime-api = { path = "zenlink-stable-amm/rpc/runtime-api", default-features = false }
 
 orml-tokens = { git = "https://github.com/bifrost-finance/open-runtime-module-library", branch = "release-polkadot-v1.4.0", default-features = false }
 orml-traits = { git = "https://github.com/bifrost-finance/open-runtime-module-library", branch = "release-polkadot-v1.4.0", default-features = false }
