@@ -7,8 +7,8 @@ use std::marker::PhantomData;
 
 use crate as pallet_zenlink;
 pub use crate::{
-	AssetBalance, AssetId, Config, LocalAssetHandler, MultiAssetsHandler, PairLpGenerate, Pallet,
-	ParaId, ZenlinkMultiAssets, LIQUIDITY, LOCAL, NATIVE, RESERVED,
+	AssetBalance, AssetId, Config, LocalAssetHandler, PairLpGenerate, Pallet, ZenlinkMultiAssets,
+	LIQUIDITY, LOCAL, RESERVED,
 };
 use codec::{Decode, Encode, MaxEncodedLen};
 use frame_support::{
@@ -106,7 +106,6 @@ impl pallet_balances::Config for Test {
 	type RuntimeHoldReason = ();
 	type RuntimeFreezeReason = ();
 	type FreezeIdentifier = ();
-	type MaxHolds = ();
 	type MaxFreezes = ();
 }
 

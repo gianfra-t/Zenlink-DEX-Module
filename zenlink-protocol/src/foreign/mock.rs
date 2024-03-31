@@ -7,8 +7,7 @@ use sp_runtime::BuildStorage;
 
 use crate as pallet_zenlink;
 pub use crate::{
-	AssetId, Config, MultiAssetsHandler, PairLpGenerate, Pallet, ParaId, ZenlinkMultiAssets,
-	LIQUIDITY, LOCAL, NATIVE, RESERVED,
+	AssetId, Config, PairLpGenerate, Pallet, ZenlinkMultiAssets, LIQUIDITY, LOCAL, NATIVE, RESERVED,
 };
 type Block = frame_system::mocking::MockBlock<Test>;
 
@@ -48,7 +47,6 @@ impl pallet_balances::Config for Test {
 	type ReserveIdentifier = [u8; 8];
 	type RuntimeHoldReason = ();
 	type FreezeIdentifier = [u8; 8];
-	type MaxHolds = ();
 	type MaxFreezes = ();
 	type RuntimeFreezeReason = ();
 }

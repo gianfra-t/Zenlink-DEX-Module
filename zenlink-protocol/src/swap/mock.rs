@@ -17,7 +17,7 @@ use sp_runtime::{BuildStorage, DispatchError, RuntimeDebug};
 use crate as pallet_zenlink;
 pub use crate::{
 	AssetBalance, AssetId, Config, LocalAssetHandler, MultiAssetsHandler, PairLpGenerate, Pallet,
-	ParaId, ZenlinkMultiAssets, LIQUIDITY, LOCAL, NATIVE, RESERVED,
+	ZenlinkMultiAssets, LOCAL, NATIVE, RESERVED,
 };
 use orml_traits::{parameter_type_with_key, MultiCurrency};
 type Block = frame_system::mocking::MockBlock<Test>;
@@ -108,7 +108,6 @@ impl pallet_balances::Config for Test {
 	type RuntimeHoldReason = ();
 	type RuntimeFreezeReason = ();
 	type FreezeIdentifier = ();
-	type MaxHolds = ();
 	type MaxFreezes = ();
 }
 
