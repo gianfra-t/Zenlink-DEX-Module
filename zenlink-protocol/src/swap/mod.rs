@@ -94,8 +94,9 @@ impl<T: Config> Pallet<T> {
 					asset_1,
 					parameter.total_supply,
 				)?;
-				if let Some(fee_to) = Self::fee_meta().0 {
+				if let Some(old_fee_to) = Self::fee_meta().0 {
 					if mint_fee > 0 && Self::fee_meta().1 > 0 {
+						let fee_to = Self::fee_receiver(lp_asset_id).unwrap_or(old_fee_to);
 						T::MultiAssetsHandler::deposit(lp_asset_id, &fee_to, mint_fee)
 							.map(|_| mint_fee)?;
 						parameter.total_supply = parameter
@@ -198,8 +199,9 @@ impl<T: Config> Pallet<T> {
 					asset_1,
 					parameter.total_supply,
 				)?;
-				if let Some(fee_to) = Self::fee_meta().0 {
+				if let Some(old_fee_to) = Self::fee_meta().0 {
 					if mint_fee > 0 && Self::fee_meta().1 > 0 {
+						let fee_to = Self::fee_receiver(lp_asset_id).unwrap_or(old_fee_to);
 						//Self::mutate_liquidity(asset_0, asset_1, &fee_to, mint_fee, true)?;
 						T::MultiAssetsHandler::deposit(lp_asset_id, &fee_to, mint_fee)
 							.map(|_| mint_fee)?;

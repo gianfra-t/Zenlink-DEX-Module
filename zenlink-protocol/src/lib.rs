@@ -140,6 +140,11 @@ pub mod pallet {
 	pub(super) type FeeMeta<T: Config> = StorageValue<_, (Option<T::AccountId>, u8), ValueQuery>;
 
 	#[pallet::storage]
+	#[pallet::getter(fn fee_receiver)]
+	/// AssetId => fee_receiver
+	pub(super) type FeeReceiver<T: Config> = StorageMap<_, Twox64Concat, T::AssetId, T::AccountId>;
+
+	#[pallet::storage]
 	#[pallet::getter(fn lp_pairs)]
 	pub type LiquidityPairs<T: Config> =
 		StorageMap<_, Blake2_128Concat, (T::AssetId, T::AssetId), Option<T::AssetId>, ValueQuery>;
@@ -493,6 +498,7 @@ pub mod pallet {
 			origin: OriginFor<T>,
 			asset_0: T::AssetId,
 			asset_1: T::AssetId,
+			fee_recipient: <T::Lookup as StaticLookup>::Source,
 		) -> DispatchResult {
 			ensure_root(origin)?;
 			ensure!(asset_0.is_support() && asset_1.is_support(), Error::<T>::UnsupportedAssetType);
@@ -527,6 +533,11 @@ pub mod pallet {
 			})?;
 
 			Self::mutate_lp_pairs(asset_0, asset_1)?;
+
+			let lp_asset_id = Self::lp_pairs(Self::sort_asset_id(asset_0, asset_1))
+				.ok_or(Error::<T>::InsufficientAssetBalance)?;
+			let new_receiver = T::Lookup::lookup(fee_recipient)?;
+			FeeReceiver::<T>::mutate(lp_asset_id, |receiver| *receiver = Some(new_receiver));
 
 			Self::deposit_event(Event::PairCreated(asset_0, asset_1));
 			Ok(())
@@ -1060,6 +1071,22 @@ pub mod pallet {
 			})?;
 
 			Self::deposit_event(Event::WithdrawReward(pair.0, pair.1, recipient));
+
+			Ok(())
+		}
+
+		#[pallet::call_index(16)]
+		#[pallet::weight(T::WeightInfo::set_fee_receiver())]
+		pub fn set_new_fee_receiver(
+			origin: OriginFor<T>,
+			asset: T::AssetId,
+			send_to: <T::Lookup as StaticLookup>::Source,
+		) -> DispatchResult {
+			ensure_root(origin)?;
+
+			let account = T::Lookup::lookup(send_to)?;
+
+			FeeReceiver::<T>::mutate(asset, |receiver| *receiver = Some(account));
 
 			Ok(())
 		}

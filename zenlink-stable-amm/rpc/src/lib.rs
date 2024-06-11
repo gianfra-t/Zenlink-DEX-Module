@@ -6,11 +6,7 @@
 #![allow(clippy::too_many_arguments)]
 
 use codec::Codec;
-use jsonrpsee::{
-	core::{Error as JsonRpseeError, RpcResult},
-	proc_macros::rpc,
-	types::error::{CallError, ErrorObject},
-};
+use jsonrpsee::{core::RpcResult, proc_macros::rpc, types::error::ErrorObject};
 
 use sp_api::ProvideRuntimeApi;
 use sp_blockchain::HeaderBackend;
@@ -396,12 +392,11 @@ fn try_into_rpc_balance<
 	value: Balance,
 ) -> RpcResult<NumberOrHex> {
 	value.try_into().map_err(|_| {
-		CallError::Custom(ErrorObject::owned(
+		ErrorObject::owned(
 			Error::RuntimeError.into(),
 			"error in stable amm pallet",
 			Some("transfer into rpc balance".to_string()),
-		))
-		.into()
+		)
 	})
 }
 
@@ -419,11 +414,6 @@ impl From<Error> for i32 {
 	}
 }
 
-fn runtime_error_into_rpc_err(err: impl std::fmt::Display) -> JsonRpseeError {
-	CallError::Custom(ErrorObject::owned(
-		Error::RuntimeError.into(),
-		"error in stable pallet",
-		Some(err.to_string()),
-	))
-	.into()
+fn runtime_error_into_rpc_err(err: impl std::fmt::Display) -> ErrorObject<'static> {
+	ErrorObject::owned(Error::RuntimeError.into(), "error in stable pallet", Some(err.to_string()))
 }
