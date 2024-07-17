@@ -22,31 +22,31 @@ zenlink-stable-amm             = { path = "zenlink-stable-amm", default-features
 zenlink-stable-amm-runtime-api = { path = "zenlink-stable-amm/rpc/runtime-api", default-features = false }
 
 codec                   = { package = "parity-scale-codec", version = "3.0.0", default-features = false }
-cumulus-primitives-core = { version = "0.8.0", default-features = false }
-frame-benchmarking      = { version = "29.0.0", default-features = false }
-frame-support           = { version = "29.0.0", default-features = false }
-frame-system            = { version = "29.0.0", default-features = false }
+cumulus-primitives-core = { version = "0.14.0", default-features = false }
+frame-benchmarking      = { version = "35.0.0", default-features = false }
+frame-support           = { version = "35.0.0", default-features = false }
+frame-system            = { version = "35.0.0", default-features = false }
 hex-literal             = { version = "0.3.1" }
-jsonrpsee               = { version = "0.20.3", features = ["server", "macros"] }
+jsonrpsee               = { version = "0.22.5", features = ["server", "macros"] }
 log                     = { version = "0.4.20", default-features = false }
-pallet-balances         = { version = "29.0.0", default-features = false }
-pallet-timestamp        = { version = "28.0.0", default-features = false }
-pallet-xcm              = { version = "8.0.0", default-features = false }
+pallet-balances         = { version = "36.0.0", default-features = false }
+pallet-timestamp        = { version = "34.0.0", default-features = false }
+pallet-xcm              = { version = "14.0.0", default-features = false }
 scale-info              = { version = "2.10.0", default-features = false, features = ["derive"] }
 serde                   = { version = "1.0.189", default-features = false }
 serde_json              = { version = "1.0.81", default-features = false  }
-sp-api                  = { version = "27.0.0", default-features = false }
-sp-arithmetic           = { version = "24.0.0", default-features = false }
-sp-blockchain           = { version = "29.0.0", default-features = false }
-sp-core                 = { version = "29.0.0", default-features = false }
-sp-io                   = { version = "31.0.0", default-features = false }
-sp-rpc                  = { version = "27.0.0", default-features = false }
-sp-runtime              = { version = "32.0.0", default-features = false }
+sp-api                  = { version = "33.0.0", default-features = false }
+sp-arithmetic           = { version = "26.0.0", default-features = false }
+sp-blockchain           = { version = "35.0.0", default-features = false }
+sp-core                 = { version = "34.0.0", default-features = false }
+sp-io                   = { version = "37.0.0", default-features = false }
+sp-rpc                  = { version = "32.0.0", default-features = false }
+sp-runtime              = { version = "38.0.0", default-features = false }
 sp-std                  = { version = "14.0.0", default-features = false }
-sp-version              = { version = "30.0.0", default-features = false }
-xcm                     = { package = "staging-xcm", version = "8.0.0", default-features = false }
-xcm-builder             = { package = "staging-xcm-builder", version = "8.0.0", default-features = false }
-xcm-executor            = { package = "staging-xcm-executor", version = "8.0.0", default-features = false }
+sp-version              = { version = "36.0.0", default-features = false }
+xcm                     = { version = "14.0.0", package = "staging-xcm", default-features = false }
+xcm-builder             = { version = "14.0.0", package = "staging-xcm-builder", default-features = false }
+xcm-executor            = { version = "14.0.0", package = "staging-xcm-executor", default-features = false }
 
-orml-tokens             = { git = "https://github.com/bifrost-finance/open-runtime-module-library", branch = "release-polkadot-v1.7.0", default-features = false }
-orml-traits             = { git = "https://github.com/bifrost-finance/open-runtime-module-library", branch = "release-polkadot-v1.7.0", default-features = false }
+orml-tokens             = { git = "https://github.com/bifrost-finance/open-runtime-module-library", branch = "release-polkadot-v1.13.0", default-features = false }
+orml-traits             = { git = "https://github.com/bifrost-finance/open-runtime-module-library", branch = "release-polkadot-v1.13.0", default-features = false }
