@@ -35,7 +35,7 @@ fn add_liquidity_should_work() {
 		assert_ok!(DexPallet::foreign_mint(DOT_ASSET_ID, &ALICE, u128::MAX));
 		assert_ok!(DexPallet::foreign_mint(BTC_ASSET_ID, &ALICE, u128::MAX));
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,ALICE));
 
 		let total_supply_dot: u128 = 1 * DOT_UNIT;
 		let total_supply_btc: u128 = 1 * BTC_UNIT;
@@ -91,7 +91,7 @@ fn remove_liquidity_should_work() {
 		assert_ok!(DexPallet::foreign_mint(DOT_ASSET_ID, &ALICE, u128::MAX));
 		assert_ok!(DexPallet::foreign_mint(BTC_ASSET_ID, &ALICE, u128::MAX));
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,ALICE));
 
 		let total_supply_dot = 50 * DOT_UNIT;
 		let total_supply_btc = 50 * BTC_UNIT;
@@ -132,7 +132,7 @@ fn foreign_get_in_price_should_work() {
 		assert_ok!(DexPallet::foreign_mint(DOT_ASSET_ID, &ALICE, u128::MAX));
 		assert_ok!(DexPallet::foreign_mint(BTC_ASSET_ID, &ALICE, u128::MAX));
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,ALICE));
 
 		let total_supply_dot = 10000 * DOT_UNIT;
 		let total_supply_btc = 10000 * BTC_UNIT;
@@ -178,7 +178,7 @@ fn foreign_get_out_price_should_work() {
 		assert_ok!(DexPallet::foreign_mint(DOT_ASSET_ID, &ALICE, u128::MAX));
 		assert_ok!(DexPallet::foreign_mint(BTC_ASSET_ID, &ALICE, u128::MAX));
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,ALICE));
 
 		let total_supply_dot = 1000000 * DOT_UNIT;
 		let total_supply_btc = 1000000 * BTC_UNIT;
@@ -228,7 +228,7 @@ fn inner_swap_exact_assets_for_assets_should_work() {
 		let total_supply_dot = 50000 * DOT_UNIT;
 		let total_supply_btc = 50000 * BTC_UNIT;
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,ALICE));
 
 		assert_ok!(DexPallet::inner_add_liquidity(
 			&ALICE,
@@ -294,7 +294,7 @@ fn inner_swap_exact_assets_for_assets_in_pairs_should_work() {
 		let total_supply_btc = 5000 * BTC_UNIT;
 		let total_supply_eth = 5000 * ETH_UNIT;
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,ALICE));
 
 		assert_ok!(DexPallet::inner_add_liquidity(
 			&ALICE,
@@ -306,7 +306,7 @@ fn inner_swap_exact_assets_for_assets_in_pairs_should_work() {
 			0
 		));
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), ETH_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), ETH_ASSET_ID, BTC_ASSET_ID,ALICE));
 
 		assert_ok!(DexPallet::inner_add_liquidity(
 			&ALICE,
@@ -367,7 +367,7 @@ fn inner_swap_assets_for_exact_assets_should_work() {
 		let supply_dot = 5000 * DOT_UNIT;
 		let supply_btc = 5000 * BTC_UNIT;
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,ALICE));
 
 		assert_ok!(DexPallet::inner_add_liquidity(
 			&ALICE,
@@ -439,9 +439,9 @@ fn inner_swap_assets_for_exact_assets_in_pairs_should_work() {
 		assert_ok!(DexPallet::foreign_mint(BTC_ASSET_ID, &ALICE, total_supply_btc));
 		assert_ok!(DexPallet::foreign_mint(ETH_ASSET_ID, &ALICE, total_supply_eth));
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,ALICE));
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), ETH_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), ETH_ASSET_ID, BTC_ASSET_ID,ALICE));
 
 		let supply_dot = 5000 * DOT_UNIT;
 		let supply_btc = 5000 * BTC_UNIT;
@@ -520,7 +520,7 @@ fn create_bootstrap_should_work() {
 		));
 
 		assert_noop!(
-			DexPallet::create_pair(RawOrigin::Root.into(), ETH_ASSET_ID, DOT_ASSET_ID),
+			DexPallet::create_pair(RawOrigin::Root.into(), ETH_ASSET_ID, DOT_ASSET_ID, ALICE),
 			Error::<Test>::PairAlreadyExists
 		);
 
@@ -923,7 +923,7 @@ fn disable_bootstrap_removed_after_all_refund_should_work() {
 			BTC_ASSET_ID,
 		));
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,ALICE));
 	})
 }
 
@@ -1148,7 +1148,7 @@ fn create_pair_in_disable_bootstrap_should_work() {
 
 		System::set_block_number(3);
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID, ALICE));
 		assert_ok!(DexPallet::add_liquidity(
 			RawOrigin::Signed(ALICE).into(),
 			DOT_ASSET_ID,
@@ -1302,7 +1302,7 @@ fn create_pair_in_ongoing_bootstrap_should_not_work() {
 			[].to_vec(),
 		));
 		assert_noop!(
-			DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,),
+			DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,ALICE),
 			Error::<Test>::PairAlreadyExists
 		);
 	})
@@ -1314,7 +1314,7 @@ fn liquidity_at_boundary_should_work() {
 		assert_ok!(DexPallet::foreign_mint(DOT_ASSET_ID, &ALICE, u128::MAX));
 		assert_ok!(DexPallet::foreign_mint(BTC_ASSET_ID, &ALICE, u128::MAX));
 
-		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,));
+		assert_ok!(DexPallet::create_pair(RawOrigin::Root.into(), DOT_ASSET_ID, BTC_ASSET_ID,ALICE));
 
 		assert_ok!(DexPallet::add_liquidity(
 			RawOrigin::Signed(ALICE).into(),
