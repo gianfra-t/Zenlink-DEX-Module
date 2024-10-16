@@ -49,5 +49,5 @@ xcm                     = { git = "https://github.com/paritytech/polkadot-sdk", 
 xcm-builder             = { git = "https://github.com/paritytech/polkadot-sdk", branch = "release-polkadot-v1.13.0", package = "staging-xcm-builder", default-features = false }
 xcm-executor            = { git = "https://github.com/paritytech/polkadot-sdk", branch = "release-polkadot-v1.13.0", package = "staging-xcm-executor", default-features = false }
 
-orml-tokens             = { git = "https://github.com/bifrost-finance/open-runtime-module-library", branch = "release-polkadot-v1.13.0", default-features = false }
-orml-traits             = { git = "https://github.com/bifrost-finance/open-runtime-module-library", branch = "release-polkadot-v1.13.0", default-features = false }
+orml-tokens             = { git = "https://github.com/bifrost-io/open-runtime-module-library", branch = "release-polkadot-v1.13.0", default-features = false }
+orml-traits             = { git = "https://github.com/bifrost-io/open-runtime-module-library", branch = "release-polkadot-v1.13.0", default-features = false }
