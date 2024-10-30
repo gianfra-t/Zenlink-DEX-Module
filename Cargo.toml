@@ -46,7 +46,7 @@ sp-runtime              = { version = "39.0.1", default-features = false }
 sp-std                  = { version = "14.0.0", default-features = false }
 sp-version              = { version = "37.0.0", default-features = false }
 xcm                     = { version = "14.2.0", package = "staging-xcm", default-features = false }
-xcm-builder             = { version = "17.0.0", package = "staging-xcm-builder", default-features = false }
+xcm-builder             = { version = "17.0.1", package = "staging-xcm-builder", default-features = false }
 xcm-executor            = { version = "17.0.0", package = "staging-xcm-executor", default-features = false }
 
 orml-tokens             = { git = "https://github.com/bifrost-io/open-runtime-module-library", branch = "release-polkadot-stable2409", default-features = false }
